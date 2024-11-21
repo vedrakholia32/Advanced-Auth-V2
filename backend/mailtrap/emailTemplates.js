@@ -110,7 +110,6 @@ export const WELCOME_TEMPLATE = `<!DOCTYPE html>
             <p>Hi {name},</p>
             <p>We're excited to welcome you to our platform. Thank you for signing up with us! We are thrilled to have you as part of our community. Get ready to explore and start using our service.</p>
             <p>If you have any questions or need assistance, feel free to reach out to us. Our support team is always here to help.</p>
-            <a href="https://your-website.com" style="background-color: #4CAF50; color: #fff; padding: 12px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px;">Get Started</a>
         </div>
         <div style="text-align: center; margin-top: 30px; font-size: 14px; color: #888;">
             <p>Best regards,<br/>The Auth Team</p>
