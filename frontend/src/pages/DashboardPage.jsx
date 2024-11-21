@@ -4,86 +4,103 @@ import { formatDate } from "../utils/date";
 import { Navigate } from "react-router-dom";
 
 const DashboardPage = () => {
-	const { user, logout, isCheckingAuth } = useAuthStore();
+  const { user, logout, isCheckingAuth } = useAuthStore();
 
-	// If the user is still being checked or not authenticated, show a loading state or fallback UI
-	if (isCheckingAuth) {
-		return <div>Loading...</div>; // You can customize this loading message or use a spinner
-	}
+  // Loading or not authenticated logic
+  if (isCheckingAuth) {
+    return (
+      <div className="flex justify-center items-center min-h-screen text-xl text-gray-600">
+        Loading...
+      </div>
+    );
+  }
 
-	if (!user) {
-		return <div>Please log in to view your dashboard.</div>; // Redirect logic could go here
-	}
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
 
-	const handleLogout = () => {
-		logout();
-        Navigate("/login");
-	};
+  const handleLogout = () => {
+    logout();
+    Navigate("/login");
+  };
 
-	return (
-		<motion.div
-			initial={{ opacity: 0, scale: 0.9 }}
-			animate={{ opacity: 1, scale: 1 }}
-			exit={{ opacity: 0, scale: 0.9 }}
-			transition={{ duration: 0.5 }}
-			className='max-w-md w-full mx-auto mt-10 p-8 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800'
-		>
-			<h2 className='text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text'>
-				Dashboard
-			</h2>
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col w-screen">
+      {/* Navigation Bar */}
+      <header className="bg-gray-800 text-white shadow-md">
+        <div className="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+          <h1 className="text-lg md:text-2xl font-bold">Dashboard</h1>
+          <button
+            onClick={handleLogout}
+            className="py-2 px-4 bg-white text-gray-700 font-semibold rounded-lg shadow hover:bg-gray-100"
+          >
+            Logout
+          </button>
+        </div>
+      </header>
 
-			<div className='space-y-6'>
-				<motion.div
-					className='p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700'
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ delay: 0.2 }}
-				>
-					<h3 className='text-xl font-semibold text-green-400 mb-3'>Profile Information</h3>
-					<p className='text-gray-300'>Name: {user.name}</p>
-					<p className='text-gray-300'>Email: {user.email}</p>
-				</motion.div>
-				<motion.div
-					className='p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700'
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ delay: 0.4 }}
-				>
-					<h3 className='text-xl font-semibold text-green-400 mb-3'>Account Activity</h3>
-					<p className='text-gray-300'>
-						<span className='font-bold'>Joined: </span>
-						{new Date(user.createdAt).toLocaleDateString("en-US", {
-							year: "numeric",
-							month: "long",
-							day: "numeric",
-						})}
-					</p>
-					<p className='text-gray-300'>
-						<span className='font-bold'>Last Login: </span>
-						{formatDate(user.lastLogin)}
-					</p>
-				</motion.div>
-			</div>
+      {/* Main Content */}
+      <div className="flex flex-1 flex-col md:flex-row">
+        {/* Sidebar */}
+        <aside className="w-full md:w-1/4 bg-white shadow-lg p-4 md:p-6 border-b md:border-r border-gray-200">
+          <h2 className="text-base md:text-lg font-semibold mb-4 md:mb-6">
+            Navigation
+          </h2>
+          <ul className="space-y-2 md:space-y-4">
+            <li>
+              <a
+                href="/profile"
+                className="block py-2 px-3 bg-gray-100 rounded-lg text-gray-800 font-medium hover:bg-gray-200"
+              >
+                Profile
+              </a>
+            </li>
+          </ul>
+        </aside>
 
-			<motion.div
-				initial={{ opacity: 0, y: 20 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 0.6 }}
-				className='mt-4'
-			>
-				<motion.button
-					whileHover={{ scale: 1.05 }}
-					whileTap={{ scale: 0.95 }}
-					onClick={handleLogout}
-					className='w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
-					font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-emerald-700
-					focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900'
-				>
-					Logout
-				</motion.button>
-			</motion.div>
-		</motion.div>
-	);
+        {/* Main Section */}
+        <main className="flex-1 bg-gray-50 p-4 md:p-8">
+          <div className="container mx-auto max-w-xl md:max-w-4xl">
+            {/* Profile Section */}
+            <section className="mb-6 md:mb-8">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+                Profile Information
+              </h2>
+              <div className="bg-white rounded-lg shadow-md p-4 md:p-6 space-y-3 md:space-y-4">
+                <p>
+                  <span className="font-semibold">Name:</span> {user.name}
+                </p>
+                <p>
+                  <span className="font-semibold">Email:</span> {user.email}
+                </p>
+              </div>
+            </section>
+
+            {/* Account Activity Section */}
+            <section>
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+                Account Activity
+              </h2>
+              <div className="bg-white rounded-lg shadow-md p-4 md:p-6 space-y-3 md:space-y-4">
+                <p>
+                  <span className="font-semibold">Joined:</span>{" "}
+                  {new Date(user.createdAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+                <p>
+                  <span className="font-semibold">Last Login:</span>{" "}
+                  {formatDate(user.lastLogin)}
+                </p>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
 };
 
 export default DashboardPage;
