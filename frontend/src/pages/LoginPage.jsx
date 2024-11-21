@@ -63,7 +63,7 @@ const LoginPage = () => {
             </Link>
           </div>
 
-          Display error message if there's an error
+          
           {error && <p className="text-red-500 font-semibold mb-2">{error}</p>}
 
           <motion.button
