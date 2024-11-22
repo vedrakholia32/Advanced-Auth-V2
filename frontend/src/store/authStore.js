@@ -95,4 +95,22 @@ export const useAuthStore = create((set) => ({
 			throw error;
 		}
 	},
+
+	updateUser: async (updatedData) => {
+		try {
+		  const response = await axios.put(`${API_URL}/update-user`, updatedData); 
+		  set((state) => ({
+			user: {
+			  ...state.user,
+			  ...response.data, 
+			},
+		  }));
+
+		// console.log(updatedData);
+		
+		} catch (error) {
+		  console.error("Failed to update user:", error.message);
+		  alert("An error occurred while updating the profile. Please try again.");
+		}
+	  },
 }));
