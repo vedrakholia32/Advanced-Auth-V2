@@ -195,7 +195,7 @@ const DashboardPage = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col w-screen">
       <header className="bg-gray-800 text-white shadow-md">
         <div className="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-          <h1 className="text-lg md:text-2xl font-bold">AuthDashboard</h1>
+          <h1 className="text-lg md:text-2xl font-bold">Auth Dashboard</h1>
           <button
             onClick={handleLogout}
             className="py-2 px-4 bg-white text-gray-700 font-semibold rounded-lg shadow hover:bg-gray-100"
