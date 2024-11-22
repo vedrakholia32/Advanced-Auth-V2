@@ -98,19 +98,37 @@ export const useAuthStore = create((set) => ({
 
 	updateUser: async (updatedData) => {
 		try {
-		  const response = await axios.put(`${API_URL}/update-user`, updatedData); 
-		  set((state) => ({
-			user: {
-			  ...state.user,
-			  ...response.data, 
-			},
-		  }));
+			const response = await axios.put(`${API_URL}/update-user`, updatedData);
+			set((state) => ({
+				user: {
+					...state.user,
+					...response.data,
+				},
+			}));
 
-		// console.log(updatedData);
-		
+			// console.log(updatedData);
+
 		} catch (error) {
-		  console.error("Failed to update user:", error.message);
-		  alert("An error occurred while updating the profile. Please try again.");
+			console.error("Failed to update user:", error.message);
+			alert("An error occurred while updating the profile. Please try again.");
+		}
+	},
+
+	updateUserPassword: async ({ currentPassword, newPassword }) => {
+		try {
+		  const response = await axios.put(`${API_URL}/update-password`, {
+			currentPassword,
+			newPassword,
+		  });
+	
+		  if (response.status === 200) {
+			return response.data; // Assuming the backend returns user data or a success message
+		  } else {
+			throw new Error("Failed to update password.");
+		  }
+		} catch (error) {
+		  throw new Error(error.response?.data?.message || "An error occurred while updating password.");
 		}
 	  },
+
 }));

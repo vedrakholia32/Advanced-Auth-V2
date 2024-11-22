@@ -201,11 +201,9 @@ export const checkAuth = async (req, res) => {
     }
 }
 
-export const updateUser = async (req, res) => {
+export const updateUserName = async (req, res) => {
     const id  = req.userId;
     const name  = req.body;
-    
-
     try {
         if (!name) {
             return res.status(400).json({ error: "Name is required." });
@@ -225,3 +223,31 @@ export const updateUser = async (req, res) => {
     }
 
 }
+
+export const updateUserPassword = async (req, res) => {
+    const id = req.userId;
+    const { newPassword } = req.body; 
+  
+    try {
+      if (!newPassword) {
+        return res.status(400).json({ error: "Password is required." });
+      }
+  
+      const hashedPassword = await bcryptjs.hash(newPassword, 10); 
+  
+      const updatedUser = await User.findByIdAndUpdate(
+        id,
+        { password: hashedPassword }, 
+        { new: true, runValidators: true }
+      );
+  
+      if (!updatedUser) {
+        return res.status(404).json({ error: "User not found." });
+      }
+  
+      res.status(200).json({ message: "Password updated successfully." }); 
+    } catch (err) {
+      console.error("Error updating user:", err);
+      res.status(500).json({ error: "An error occurred while updating the password." });
+    }
+  };
