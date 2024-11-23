@@ -30,13 +30,16 @@ const SignUpPage = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-md w-full bg-white bg-opacity-80 backdrop-filter border border-gray-400 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden mx-4 sm:mx-8 md:mx-16 lg:mx-auto"
+      className="max-w-md w-full bg-white bg-opacity-80 backdrop-filter border border-gray-400 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden mx-4 sm:mx-8 md:mx-16 lg:mx-auto" // Increased width here
     >
-      <div className="p-8">
-        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 rounded-lg p-4">
+      <div className="p-6">
+        {" "}
+        {/* Further reduced padding */}
+        <h2 className="text-3xl font-bold mb-4 text-center text-gray-800 rounded-lg p-4">
+          {" "}
+          {/* Reduced margin */}
           Create Account
         </h2>
-
         <form onSubmit={handleSignUp}>
           <Input
             icon={User}
@@ -66,7 +69,7 @@ const SignUpPage = () => {
           <PasswordStrengthMeter password={password} />
 
           <motion.button
-            className="mt-5 w-full py-3 px-4 bg-gray-800 text-white font-bold rounded-lg shadow-xl hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 focus:ring-offset-gray-100 transition duration-200"
+            className="mt-4 w-full py-3 px-4 bg-gray-800 text-white font-bold rounded-lg shadow-xl hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 focus:ring-offset-gray-100 transition duration-200"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
@@ -80,7 +83,9 @@ const SignUpPage = () => {
           </motion.button>
         </form>
       </div>
-      <div className="px-8 py-4 pb-12 bg-opacity-50 flex justify-center shadow-lg">
+      <div className="px-8 py-3 pb-8 bg-opacity-50 flex justify-center shadow-lg">
+        {" "}
+        {/* Reduced padding */}
         <p className="text-sm text-gray-800">
           Already have an account?{" "}
           <Link to={"/login"} className="text-blue-700 hover:underline">

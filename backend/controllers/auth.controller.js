@@ -28,8 +28,10 @@ export const signup = async (req, res) => {
             password: hashedPassword,
             name,
             verificationToken: verificationToken,
-            verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000 // 24 hours
-        })
+            verificationTokenExpiresAt: Date.now() + 15 * 60 * 1000 // 15 minutes
+        });
+        
+        
 
         await user.save();
 
