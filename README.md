@@ -3,6 +3,7 @@
 Auth Dashboard - React Application
 
 Developed an interactive Auth Dashboard using React, focusing on authentication and user profile management. The project includes:
+
 User Authentication:   Implemented secure login and sign-up functionality with password strength meter and email verification.
 Profile Management:    Enabled users to view and update their profile information, including name, password.
 Responsive Design:     Designed a user-friendly interface with a modern, clean aesthetic using gray and white color schemes, rounded corners, and shadow effects.
