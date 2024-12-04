@@ -2,6 +2,8 @@
 
 Auth Dashboard - React Application
 
+🌐Link to the deployed application:https://advanced-auth-v2.onrender.com
+
 Developed an interactive Auth Dashboard using React, focusing on authentication and user profile management. The project includes:
 
 User Authentication:   Implemented secure login and sign-up functionality with password strength meter and email verification.
