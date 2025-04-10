@@ -3,6 +3,7 @@
 Auth Dashboard - React Application
 
 🌐Link to the deployed application:https://advanced-auth-v2.onrender.com
+Second Domain : https://www.advanced-auth.in
 
 Developed an interactive Auth Dashboard using React, focusing on authentication and user profile management. The project includes:
 
